@@ -12,15 +12,12 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        var playerController = FindObjectOfType<PlayerController>();
-        if (playerController == null) return;
-        
         Inputs.Character.MoveJoystick.performed += moveValue =>
         {
-            playerController.SetMovementVector(moveValue.ReadValue<Vector2>());
+            PlayerController.Instance.SetMovementVector(moveValue.ReadValue<Vector2>());
         };
         Inputs.Character.MoveJoystick.canceled += moveValue => {
-            playerController.SetMovementVector(moveValue.ReadValue<Vector2>());
+            PlayerController.Instance.SetMovementVector(moveValue.ReadValue<Vector2>());
         };
         
         var cinemachineInputProvider = FindObjectOfType<CinemachineInputProvider>();
@@ -28,17 +25,16 @@ public class InputManager : MonoBehaviour
 
         Inputs.Character.Move.performed += moveValue =>
         {
-            playerController.SetMovementVector(moveValue.ReadValue<Vector3>());
+            PlayerController.Instance.SetMovementVector(moveValue.ReadValue<Vector3>());
         };
         
-
         Inputs.Character.Jump.performed += jumpValue =>
         {
-            playerController.SetJump(jumpValue.ReadValueAsButton());
+            PlayerController.Instance.SetJump(jumpValue.ReadValueAsButton());
         };
         Inputs.Character.Sprint.performed += sprintValue =>
         {
-            playerController.SetSprint(sprintValue.ReadValueAsButton());
+            PlayerController.Instance.SetSprint(sprintValue.ReadValueAsButton());
         };
         
         Inputs.Enable();
