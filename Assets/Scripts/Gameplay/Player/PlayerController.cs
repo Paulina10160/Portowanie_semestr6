@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         
         Instance = this;
         characterController = GetComponent<CharacterController>();
+        PlatformUserStats.SetAchievement("playerControlled");
     }
 
     private void Update() 
@@ -69,15 +70,18 @@ public class PlayerController : MonoBehaviour
         yMovement = Mathf.Max(-9.81f, yMovement - Time.deltaTime * 30f);
     }
 
-    public void SetJump(bool state) {
+    public void SetJump(bool state) 
+    {
         isJumping = state;
     }
     
-    public void SetSprint(bool state) {
+    public void SetSprint(bool state) 
+    {
         isSprinting = state;
     }
 
-    public void SetMovementVector(Vector3 movement) {
+    public void SetMovementVector(Vector3 movement) 
+    {
         this.movementValue = movement;
     }
 }
